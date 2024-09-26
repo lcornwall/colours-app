@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 export default function SignupPage() {
     const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -58,6 +59,14 @@ export default function SignupPage() {
             </form>
             {error && <p className="mt-4 text-red-500">{error}</p>}
             {success && <p className="mt-4 text-green-500">{success}</p>}
+
+            <div className="py-6"></div>
+            <Link href="/login">
+                <button className="bg-gradient-to-r from-green-500 to-teal-400 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-110 text-xl">
+                    Log In Page
+                </button>
+            </Link>
+
         </div>
     );
 }
