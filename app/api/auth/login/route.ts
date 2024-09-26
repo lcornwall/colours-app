@@ -16,7 +16,11 @@ export async function POST(request: Request) {
         const user = res.rows[0];
 
         if (user && await bcrypt.compare(password, user.password)) {
-            return NextResponse.json({ message: 'Login successful', user });
+            const sessionCookie = `session=${user.id}; HttpOnly; Path=/; Max-Age=3600;`;
+
+            return NextResponse.json({ message: 'Login successful' }, {
+                headers: { 'Set-Cookie': sessionCookie },
+            });
         } else {
             return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
         }
