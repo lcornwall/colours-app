@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import bcrypt from 'bcrypt';
+import { cookies } from 'next/headers'; // Import the cookies API
 
 export async function POST(request: Request) {
     try {
@@ -21,7 +22,20 @@ export async function POST(request: Request) {
             return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
         }
 
-        return NextResponse.json({ message: 'Login successful', user: { username: user.username, dateOfBirth: user.dateOfBirth, gender: user.gender } }, { status: 200 });
+        // Setting the cookie with HttpOnly and a 1-day expiration
+        const cookieStore = cookies();
+        cookieStore.set('username', user.username, {
+            httpOnly: true, // Prevents client-side access to the cookie
+            maxAge: 60 * 60 * 24, // 1 day
+            path: '/', // Cookie available site-wide
+        });
+
+        // Return a response with a success message
+        return NextResponse.json({
+            message: 'Login successful',
+            user: { username: user.username, dateOfBirth: user.dateOfBirth, gender: user.gender },
+        }, { status: 200 });
+
     } catch (error) {
         console.error(error);
         return NextResponse.json({ error: 'Failed to login' }, { status: 500 });
