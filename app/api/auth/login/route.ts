@@ -1,32 +1,29 @@
 import { NextResponse } from 'next/server';
-import { Client } from 'pg';
+import clientPromise from '@/lib/mongodb';
 import bcrypt from 'bcrypt';
 
 export async function POST(request: Request) {
-    const { phone_number, password } = await request.json();
-
-    const client = new Client({
-        connectionString: process.env.POSTGRES_URL,
-    });
-
-    await client.connect();
-
     try {
-        const res = await client.query('SELECT * FROM users WHERE phone_number = $1', [phone_number]);
-        const user = res.rows[0];
+        const { username, password } = await request.json();
 
-        if (user && await bcrypt.compare(password, user.password)) {
-            const sessionCookie = `session=${user.id}; HttpOnly; Path=/; Max-Age=3600;`;
+        const client = await clientPromise;
+        const db = client.db('colourData');
 
-            return NextResponse.json({ message: 'Login successful' }, {
-                headers: { 'Set-Cookie': sessionCookie },
-            });
-        } else {
-            return NextResponse.json({ error: 'Invalid credentials' }, { status: 401 });
+        const user = await db.collection('users').findOne({ username });
+
+        if (!user) {
+            return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
         }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+
+        if (!isMatch) {
+            return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
+        }
+
+        return NextResponse.json({ message: 'Login successful', user: { username: user.username, dateOfBirth: user.dateOfBirth, gender: user.gender } }, { status: 200 });
     } catch (error) {
-        return NextResponse.json({ error: 'An error occurred' }, { status: 500 });
-    } finally {
-        await client.end();
+        console.error(error);
+        return NextResponse.json({ error: 'Failed to login' }, { status: 500 });
     }
 }

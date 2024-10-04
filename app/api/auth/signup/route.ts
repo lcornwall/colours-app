@@ -1,29 +1,37 @@
 import { NextResponse } from 'next/server';
-import { Client } from 'pg';
+import clientPromise from '@/lib/mongodb';
 import bcrypt from 'bcrypt';
 
 export async function POST(request: Request) {
-    const { phone_number, password } = await request.json();
-
-    const client = new Client({
-        connectionString: process.env.POSTGRES_URL,
-    });
-
-    await client.connect();
-
     try {
+        const { username, password, dateOfBirth, gender } = await request.json();
+
+        const ip = request.headers.get('x-forwarded-for') ||
+            (request as any).socket?.remoteAddress;
+
+        const client = await clientPromise;
+        const db = client.db('colourData');
+        const existingUser = await db.collection('users').findOne({ username });
+
+        if (existingUser) {
+            return NextResponse.json({ error: 'User already exists' }, { status: 409 });
+        }
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const res = await client.query(
-            'INSERT INTO users (phone_number, password) VALUES ($1, $2) RETURNING *',
-            [phone_number, hashedPassword]
-        );
+        const newUser = {
+            username,
+            password: hashedPassword,
+            dateOfBirth,
+            gender,
+            createdAt: new Date(),
+            ipAddress: ip
+        };
 
-        const user = res.rows[0];
-        return NextResponse.json({ user });
+        const result = await db.collection('users').insertOne(newUser);
+
+        return NextResponse.json({ message: 'User created successfully', result }, { status: 201 });
     } catch (error) {
-        return NextResponse.json({ error: 'User already exists or other error' }, { status: 400 });
-    } finally {
-        await client.end();
+        console.error(error);
+        return NextResponse.json({ error: 'Failed to create user' }, { status: 500 });
     }
 }
