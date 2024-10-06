@@ -1,6 +1,4 @@
 "use client";
-
-import Link from 'next/link';
 import { useRouter } from "next/navigation";
 
 interface DashboardClientProps {
@@ -13,7 +11,7 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
     const handleLogout = async () => {
         const response = await fetch('/api/auth/logout', { method: 'POST' });
         if (response.ok) {
-            setTimeout(() => router.push("/"), 1000);
+            router.push("/login");
         } else {
             console.error('Logout failed');
         }
@@ -38,9 +36,12 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
                 ) : (
                     <div>
                         <h2 className="text-2xl font-semibold mb-4">Please log in.</h2>
-                        <Link href="/signup" className="mt-4 bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105">
-                            Sign Up
-                        </Link>
+                        <button
+                            onClick={() => router.push("/login")}
+                            className="mt-4 bg-gradient-to-r from-blue-500 to-cyan-400 text-white font-bold py-3 px-8 rounded-full shadow-lg transition-transform transform hover:scale-105"
+                        >
+                            Login
+                        </button>
                     </div>
                 )}
             </div>

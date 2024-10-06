@@ -25,7 +25,11 @@ export default function Login() {
 
         if (response.ok) {
             setMessage({ type: "success", content: "Login successful!" });
-            setTimeout(() => router.push("/dashboard"), 1000);
+
+            setTimeout(() => {
+                router.refresh();
+                router.push("/dashboard");
+            }, 500);
         } else {
             setMessage({ type: "error", content: data.error || "Login failed. Please try again." });
         }

@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import clientPromise from '@/lib/mongodb';
 import bcrypt from 'bcrypt';
-import { cookies } from 'next/headers'; // Import the cookies API
+import { cookies } from 'next/headers';
 
 export async function POST(request: Request) {
     try {
@@ -21,16 +21,14 @@ export async function POST(request: Request) {
         if (!isMatch) {
             return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
         }
-
-        // Setting the cookie with HttpOnly and a 1-day expiration
         const cookieStore = cookies();
         cookieStore.set('username', user.username, {
-            httpOnly: true, // Prevents client-side access to the cookie
-            maxAge: 60 * 60 * 24, // 1 day
-            path: '/', // Cookie available site-wide
+            maxAge: 60 * 60 * 24,
+            path: '/',
         });
 
-        // Return a response with a success message
+        await new Promise((resolve) => setTimeout(resolve, 500));
+
         return NextResponse.json({
             message: 'Login successful',
             user: { username: user.username, dateOfBirth: user.dateOfBirth, gender: user.gender },
