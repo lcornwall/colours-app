@@ -29,5 +29,10 @@ export default function DashboardPage() {
         return <div>Loading...</div>;
     }
 
-    return <DashboardClient username={username} />;
+    return (
+        <div>
+            <DashboardClient username={username} />
+        </div>
+    );
+
 }
