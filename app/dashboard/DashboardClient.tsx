@@ -32,6 +32,10 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
         fetchAge();
     }, [username]);
 
+    const handleAgeSelection = (ageRange: string) => {
+        router.push(`/gamePage/${ageRange}`);
+    };
+
     const handleLogout = async () => {
         const response = await fetch('/api/auth/logout', { method: 'POST' });
         if (response.ok) {
@@ -41,7 +45,7 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
         }
     };
 
-    const changePassword = async () => {
+    const changePassword = () => {
         router.push("/changePassword");
     };
 
@@ -69,39 +73,41 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
 
                 <div className="mt-6 flex flex-col items-center space-y-4">
                     <button
-                        onClick={() => router.push("/futureLink")}
+                        onClick={() => handleAgeSelection("3-4")}
                         className="bg-gradient-to-r from-green-500 to-teal-400 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-110 text-xl"
                     >
                         Age 3-4
                     </button>
 
                     <button
-                        onClick={() => router.push("/futureLink")}
+                        onClick={() => handleAgeSelection("4-5")}
                         className="bg-gradient-to-r from-blue-500 to-indigo-400 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-110 text-xl"
                     >
                         Age 4-5
                     </button>
 
                     <button
-                        onClick={() => router.push("/futureLink")}
+                        onClick={() => handleAgeSelection("5-6")}
                         className="bg-gradient-to-r from-purple-500 to-pink-400 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-110 text-xl"
                     >
                         Age 5-6
                     </button>
 
                     <button
-                        onClick={() => router.push("/futureLink")}
+                        onClick={() => handleAgeSelection("6-7")}
                         className="bg-gradient-to-r from-orange-500 to-yellow-400 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-110 text-xl"
                     >
                         Age 6-7
                     </button>
 
+
                     <button
-                        onClick={() => router.push("/futureLink")}
+                        onClick={() => handleAgeSelection("7-8")}
                         className="bg-gradient-to-r from-red-500 to-pink-400 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-110 text-xl"
                     >
                         Age 7-8
                     </button>
+
                 </div>
 
                 {username && (
@@ -127,4 +133,3 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
 };
 
 export default DashboardClient;
-
