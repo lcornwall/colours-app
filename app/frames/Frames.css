@@ -1,0 +1,43 @@
+.frame-container {
+    position: relative;
+    width: 375px;
+    height: 667px;
+    padding: 20px;
+    margin: 20px auto;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.frame-object {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f0f0f5;
+    transition: transform 0.2s ease-in-out, background-color 0.2s;
+    margin: 5px 0;
+}
+
+.blue-button {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.frame-object:hover {
+    background-color: #e0e0eb;
+    transform: scale(1.02);
+}

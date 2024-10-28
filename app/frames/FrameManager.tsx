@@ -1,37 +1,38 @@
-// components/FrameManager.tsx
-
-import React, { useState } from 'react';
-
+import React, { useState, useEffect } from 'react';
 import Frame from './Frame';
+import { frames } from '../../public/lib/data/framesData';
+import { FrameConfig } from '../../public/lib/data/types';
 
+interface FrameManagerProps {
+    ageRange: string;
+}
 
+const FrameManager: React.FC<FrameManagerProps> = ({ ageRange }) => {
+    const [currentFrameId, setCurrentFrameId] = useState<string | null>(null);
+    const [frameData, setFrameData] = useState<{ [frameId: string]: FrameConfig } | null>(null);
 
-const FrameManager = ({ initialFrameId, frames }: { initialFrameId: string; frames: any }) => {
-
-    const [currentFrameId, setCurrentFrameId] = useState(initialFrameId);
-
-
+    useEffect(() => {
+        // Works but has a type issue in future... maybe
+        if (frames[ageRange]) {
+            const availableFrames = frames[ageRange].frames;
+            setCurrentFrameId(Object.keys(availableFrames)[0]);
+            setFrameData(availableFrames);
+        } else {
+            console.error(`No frames available for age group: ${ageRange}`);
+        }
+    }, [ageRange]);
 
     const handleNavigate = (nextFrameId: string) => {
-
-        setCurrentFrameId(nextFrameId); // Update the current frame
-
+        if (frameData && frameData[nextFrameId]) {
+            setCurrentFrameId(nextFrameId);
+        }
     };
 
+    if (!frameData || !currentFrameId) {
+        return <div>Loading...</div>;
+    }
 
-
-    return (
-
-        <div>
-
-            <Frame frame={frames[currentFrameId]} onNavigate={handleNavigate} />
-
-        </div>
-
-    );
-
+    return <Frame frame={frameData[currentFrameId]} onNavigate={handleNavigate} />;
 };
-
-
 
 export default FrameManager;
