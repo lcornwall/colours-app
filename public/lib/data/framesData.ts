@@ -5,20 +5,26 @@ export const frames = {
                 objects: [
                     {
                         type: 'Background',
-                        imageSrc: '/loadingDoodles.PNG',
+                        imageSrc: '/Trees.jpg',
                         layer: 0,
-                        action: 'DoNothing',
                     },
                     {
-                        type: 'BlueButton',
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
                         layer: 1,
-                        action: 'DoNothing',
                     },
                     {
-                        type: 'BlueButton',
+                        type: 'Speak',
+                        text: 'Do you want to play the roses game with me?',
                         layer: 2,
+                    },
+                    {
+                        type: 'Button',
+                        layer: 3,
                         action: 'GoToFrame',
                         nextFrameId: '2',
+                        color: 'red',
+                        text: 'Click to Play!',
                     },
                 ],
             },
@@ -26,14 +32,181 @@ export const frames = {
                 objects: [
                     {
                         type: 'Background',
-                        imageSrc: '/loadingDoodles.PNG',
+                        imageSrc: '/blankRose.png',
                         layer: 0,
-                        action: 'DoNothing',
                     },
                     {
-                        type: 'BlueButton',
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
                         layer: 1,
-                        action: 'DoNothing',
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'Click the colour of rose you would like!',
+                        layer: 2,
+                    },
+                    {
+                        type: 'Button',
+                        layer: 3,
+                        action: 'GoToFrame',
+                        nextFrameId: '3',
+                        color: 'red',
+                        text: 'Red',
+                    },
+                    {
+                        type: 'Button',
+                        layer: 4,
+                        action: 'GoToFrame',
+                        nextFrameId: '4',
+                        color: 'orange',
+                        text: 'Orange',
+                    },
+                    {
+                        type: 'Button',
+                        layer: 5,
+                        action: 'GoToFrame',
+                        nextFrameId: '5',
+                        color: 'blue',
+                        text: 'Blue',
+                    },
+                ],
+            },
+            "3": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/redRose.jpg',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'You picked me a red rose!',
+                        layer: 1,
+                        action: 'GoToFrame',
+                        time: 5000,
+                        nextFrameId: 6,
+                    },
+
+                ],
+            },
+            "4": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/orangeRose.jpg',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'You picked me an orange rose!',
+                        layer: 1,
+                        action: 'GoToFrame',
+                        time: 5000,
+                        nextFrameId: 7,
+                    },
+                ],
+            },
+            "5": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/blueRose.png',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'You picked me a blue rose!',
+                        layer: 1,
+                        action: 'GoToFrame',
+                        time: 5000,
+                        nextFrameId: 8,
+                    },
+                ],
+            },
+            "6": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'Time for a quiz!',
+                        layer: 2,
+                    },
+                    {
+                        type: 'Quiz',
+                        question: 'What color rose did you pick?',
+                        answers: [
+                            { text: "The rose was red.", isCorrect: true },
+                            { text: "The rose was blue.", isCorrect: false },
+                            { text: "The rose was orange.", isCorrect: false },
+                        ],
+                        layer: 3,
+                    },
+                ],
+            },
+            "7": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'Time for a quiz!',
+                        layer: 2,
+                    },
+                    {
+                        type: 'Quiz',
+                        question: 'What color rose did you pick?',
+                        answers: [
+                            { text: "The rose was red.", isCorrect: false },
+                            { text: "The rose was blue.", isCorrect: false },
+                            { text: "The rose was orange.", isCorrect: true },
+                        ],
+                        layer: 3,
+                    },
+                ],
+            },
+            "8": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'Time for a quiz!',
+                        layer: 2,
+                    },
+                    {
+                        type: 'Quiz',
+                        question: 'What color rose did you pick?',
+                        answers: [
+                            { text: "The rose was red.", isCorrect: false },
+                            { text: "The rose was blue.", isCorrect: true },
+                            { text: "The rose was orange.", isCorrect: false },
+                        ],
+                        layer: 3,
                     },
                 ],
             },

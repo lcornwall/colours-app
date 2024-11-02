@@ -1,14 +1,50 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-const GoToFrameAction: React.FC<{ nextFrameId: string; onNavigate: (frameId: string) => void }> = ({ nextFrameId, onNavigate }) => {
-    const execute = () => {
-        console.log(`Navigating to frame ${nextFrameId}.`);
-        onNavigate(nextFrameId);
-    };
-    return <button onClick={execute}>Go to Frame {nextFrameId}</button>;
+interface Action {
+    type: string;
+    text?: string;
+    time?: number;
+    nextFrameId?: string;
+}
 
+interface GoToFrameActionProps {
+    action: Action;
+    onNavigate: (frameId: string) => void;
+    triggerTimeout?: boolean;
+}
+
+const GoToFrameAction: React.FC<GoToFrameActionProps> = ({
+    action,
+    onNavigate,
+    triggerTimeout = false
+}) => {
+    useEffect(() => {
+        let timer: NodeJS.Timeout | null = null;
+        const { time = 0, nextFrameId } = action;
+
+        if (triggerTimeout && nextFrameId) {
+            if (time > 0) {
+                console.log(`Starting navigation timer to frame ${nextFrameId} for ${time} milliseconds.`);
+                timer = setTimeout(() => {
+                    console.log(`Navigating to frame ${nextFrameId} after ${time} milliseconds.`);
+                    onNavigate(nextFrameId);
+                }, time);
+            } else {
+
+                console.log(`Navigating to frame ${nextFrameId} immediately.`);
+                onNavigate(nextFrameId);
+            }
+        }
+
+        return () => {
+            if (timer) {
+                console.log(`Clearing timer for navigation to frame ${nextFrameId}.`);
+                clearTimeout(timer);
+            }
+        };
+    }, [action, onNavigate, triggerTimeout]);
+
+    return null;
 };
 
-
 export default GoToFrameAction;
-

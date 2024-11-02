@@ -8,9 +8,7 @@ const Frame = ({ frame, onNavigate }: { frame: any; onNavigate: (frameId: string
 
     return (
         <div className="frame-container">
-            {backgroundObject && (
-                <Background imageSrc={backgroundObject.imageSrc} />
-            )}
+            {backgroundObject && <Background imageSrc={backgroundObject.imageSrc} />}
             {frame.objects
                 .filter((object: any) => object.type !== 'Background')
                 .sort((a: any, b: any) => a.layer - b.layer)

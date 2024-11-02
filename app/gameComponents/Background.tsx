@@ -1,15 +1,20 @@
 import React from 'react';
 
-interface BackgroundProps {
-    imageSrc: string;
-}
-
-const Background: React.FC<BackgroundProps> = ({ imageSrc }) => {
+const Background = ({ imageSrc }: { imageSrc: string }) => {
     return (
-        <div
-            className="background-image"
-            style={{ backgroundImage: `url(${imageSrc})` }}
-        ></div>
+        <img
+            src={imageSrc}
+            alt="Background"
+            style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                zIndex: 0,
+            }}
+        />
     );
 };
 

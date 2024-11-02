@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Frame from './Frame';
 import { frames } from '../../public/lib/data/framesData';
-import { FrameConfig } from '../../public/lib/data/types';
 
 interface FrameManagerProps {
     ageRange: string;
