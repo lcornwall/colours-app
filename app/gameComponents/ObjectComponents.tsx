@@ -1,4 +1,5 @@
 import React, { useEffect, Suspense } from 'react';
+import './ObjectStyling.css';
 
 interface ObjectComponentProps {
     object: any;
@@ -34,9 +35,13 @@ const ObjectComponent: React.FC<ObjectComponentProps> = ({ object, onNavigate })
         }
     };
 
+    // Apply position class based on object.position property
+    const positionClass = object.position ? object.position : '';
+
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <div
+                className={`frame-object ${positionClass}`}
                 style={{
                     position: 'absolute',
                     zIndex: object.layer,

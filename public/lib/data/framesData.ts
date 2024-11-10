@@ -11,11 +11,13 @@ export const frames = {
                     {
                         type: 'Character',
                         imageSrc: '/Gilgili.png',
+                        position: 'centre',
                         layer: 1,
                     },
                     {
                         type: 'Speak',
                         text: 'Do you want to play the roses game with me?',
+                        position: 'top-centre',
                         layer: 2,
                     },
                     {
@@ -23,6 +25,7 @@ export const frames = {
                         layer: 3,
                         action: 'GoToFrame',
                         nextFrameId: '2',
+                        position: 'bottom-centre',
                         color: 'red',
                         text: 'Click to Play!',
                     },
@@ -38,11 +41,13 @@ export const frames = {
                     {
                         type: 'Character',
                         imageSrc: '/Gilgili.png',
+                        position: 'centre',
                         layer: 1,
                     },
                     {
                         type: 'Speak',
                         text: 'Click the colour of rose you would like!',
+                        position: 'top-centre',
                         layer: 2,
                     },
                     {
@@ -51,6 +56,7 @@ export const frames = {
                         action: 'GoToFrame',
                         nextFrameId: '3',
                         color: 'red',
+                        position: 'bottom-left',
                         text: 'Red',
                     },
                     {
@@ -59,6 +65,7 @@ export const frames = {
                         action: 'GoToFrame',
                         nextFrameId: '4',
                         color: 'orange',
+                        position: 'bottom-centre',
                         text: 'Orange',
                     },
                     {
@@ -67,6 +74,7 @@ export const frames = {
                         action: 'GoToFrame',
                         nextFrameId: '5',
                         color: 'blue',
+                        position: 'bottom-right',
                         text: 'Blue',
                     },
                 ],
@@ -83,6 +91,7 @@ export const frames = {
                         text: 'You picked me a red rose!',
                         layer: 1,
                         action: 'GoToFrame',
+                        position: 'top-centre',
                         time: 5000,
                         nextFrameId: 6,
                     },
@@ -101,6 +110,7 @@ export const frames = {
                         text: 'You picked me an orange rose!',
                         layer: 1,
                         action: 'GoToFrame',
+                        position: 'top-centre',
                         time: 5000,
                         nextFrameId: 7,
                     },
@@ -116,6 +126,7 @@ export const frames = {
                     {
                         type: 'Speak',
                         text: 'You picked me a blue rose!',
+                        position: 'top-centre',
                         layer: 1,
                         action: 'GoToFrame',
                         time: 5000,
@@ -133,11 +144,13 @@ export const frames = {
                     {
                         type: 'Character',
                         imageSrc: '/Gilgili.png',
+                        position: 'bottom-centre',
                         layer: 1,
                     },
                     {
                         type: 'Speak',
                         text: 'Time for a quiz!',
+                        position: 'bottom-left',
                         layer: 2,
                     },
                     {
@@ -162,11 +175,13 @@ export const frames = {
                     {
                         type: 'Character',
                         imageSrc: '/Gilgili.png',
+                        position: 'bottom-centre',
                         layer: 1,
                     },
                     {
                         type: 'Speak',
                         text: 'Time for a quiz!',
+                        position: 'bottom-left',
                         layer: 2,
                     },
                     {
@@ -191,11 +206,13 @@ export const frames = {
                     {
                         type: 'Character',
                         imageSrc: '/Gilgili.png',
+                        position: 'bottom-centre',
                         layer: 1,
                     },
                     {
                         type: 'Speak',
                         text: 'Time for a quiz!',
+                        position: 'bottom-left',
                         layer: 2,
                     },
                     {
