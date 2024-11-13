@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface WeatherWidgetProps {
-    updateInterval?: number;
+    updateInterval?: number; // Optional prop for interval, defaulting to 60000 ms
 }
 
 const WeatherWidget: React.FC<WeatherWidgetProps> = ({ updateInterval = 60000 }) => {
