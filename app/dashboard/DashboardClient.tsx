@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import WeatherWidget from "../weather/page";
 
 interface DashboardClientProps {
     username: string | null;
@@ -70,7 +71,7 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
                 ) : (
                     <h2 className="text-2xl font-semibold mb-4">Welcome to our platform!</h2>
                 )}
-
+                <WeatherWidget></WeatherWidget>
                 <div className="mt-6 flex flex-col items-center space-y-4">
                     <button
                         onClick={() => handleAgeSelection("3-4")}

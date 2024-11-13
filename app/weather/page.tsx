@@ -3,14 +3,20 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const HomePage = () => {
+interface WeatherWidgetProps {
+    updateInterval?: number;
+}
+
+const WeatherWidget: React.FC<WeatherWidgetProps> = ({ updateInterval = 60000 }) => {
     const [latitude, setLatitude] = useState<string | null>(null);
     const [longitude, setLongitude] = useState<string | null>(null);
+    const [city, setCity] = useState<string | null>(null);
     const [weatherData, setWeatherData] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [currentTime, setCurrentTime] = useState<string>('');
 
+    // Fetch weather data
     const fetchWeather = async (lat: string, lon: string) => {
         setLoading(true);
         setError('');
@@ -27,6 +33,19 @@ const HomePage = () => {
         }
     };
 
+    // Fetch city data via API route
+    const fetchCity = async (lat: string, lon: string) => {
+        try {
+            const response = await axios.get('/api/location', {
+                params: { latitude: lat, longitude: lon },
+            });
+            setCity(response.data.city);
+        } catch (err) {
+            setError('Failed to fetch location data');
+        }
+    };
+
+    // Get user location
     const getUserLocation = () => {
         if (!navigator.geolocation) {
             setError('Geolocation is not supported by your browser.');
@@ -39,10 +58,20 @@ const HomePage = () => {
                 setLatitude(latitude.toString());
                 setLongitude(longitude.toString());
             },
-            (err) => {
+            () => {
                 setError('Unable to retrieve your location.');
             }
         );
+    };
+
+    // Update time every interval
+    const formatTime = () => {
+        const date = new Date();
+        return date.toLocaleTimeString([], {
+            hour: 'numeric',
+            minute: 'numeric',
+            hour12: true,
+        });
     };
 
     useEffect(() => {
@@ -52,42 +81,29 @@ const HomePage = () => {
     useEffect(() => {
         if (latitude && longitude) {
             fetchWeather(latitude, longitude);
+            fetchCity(latitude, longitude); // Fetch city name via API route
         }
     }, [latitude, longitude]);
-
-    const formatTime = () => {
-        const date = new Date();
-        const options: Intl.DateTimeFormatOptions = {
-            hour: 'numeric',
-            minute: 'numeric',
-            hour12: true,
-        };
-        return date.toLocaleTimeString([], options);
-    };
 
     useEffect(() => {
         setCurrentTime(formatTime());
 
         const intervalId = setInterval(() => {
             setCurrentTime(formatTime());
-        }, 60000);
+        }, updateInterval);
 
         return () => clearInterval(intervalId);
-    }, []);
+    }, [updateInterval]);
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>{error}</div>;
 
     return (
         <div>
-            <h1>Weather Information</h1>
+            <p>Current Time: {currentTime}</p>
+            {city && <p>Location: {city}</p>}
             {weatherData ? (
-                <div>
-                    <p>Current Time: {currentTime}</p>
-                    <p>
-                        Temperature: {weatherData.current_temperature}°C
-                    </p>
-                </div>
+                <p>Temperature: {weatherData.current_temperature}°C</p>
             ) : (
                 <p>No weather data available</p>
             )}
@@ -95,4 +111,4 @@ const HomePage = () => {
     );
 };
 
-export default HomePage;
+export default WeatherWidget;

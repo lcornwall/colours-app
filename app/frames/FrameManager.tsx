@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import Frame from './Frame';
 import { frames } from '../../public/lib/data/framesData';
 
-interface FrameManagerProps {
+interface FrameConfig {
+    title: string;
+    content: string;
+    nextFrameId?: string;
+}
+
+interface FrameProps {
     ageRange: string;
 }
 
-const FrameManager: React.FC<FrameManagerProps> = ({ ageRange }) => {
+const Frame: React.FC<FrameProps> = ({ ageRange }) => {
     const [currentFrameId, setCurrentFrameId] = useState<string | null>(null);
     const [frameData, setFrameData] = useState<{ [frameId: string]: FrameConfig } | null>(null);
 
     useEffect(() => {
-        // Works but has a type issue in future... maybe
         if (frames[ageRange]) {
             const availableFrames = frames[ageRange].frames;
             setCurrentFrameId(Object.keys(availableFrames)[0]);
@@ -31,7 +35,15 @@ const FrameManager: React.FC<FrameManagerProps> = ({ ageRange }) => {
         return <div>Loading...</div>;
     }
 
-    return <Frame frame={frameData[currentFrameId]} onNavigate={handleNavigate} />;
+    const { title, content, nextFrameId } = frameData[currentFrameId];
+
+    return (
+        <div>
+            <h1>{title}</h1>
+            <p>{content}</p>
+            {nextFrameId && <button onClick={() => handleNavigate(nextFrameId)}>Next</button>}
+        </div>
+    );
 };
 
-export default FrameManager;
+export default Frame;
