@@ -14,6 +14,7 @@ const config: Config = {
       },
       backgroundImage: {
         'loading-doodles': "url('/loadingDoodles.PNG')",
+        'character-doodles': "url('/characterBackground.PNG')",
       },
     },
   },

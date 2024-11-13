@@ -95,16 +95,20 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ updateInterval = 60000 })
     if (error) return <div>{error}</div>;
 
     return (
-        <div>
-            <p>Current Time: {currentTime}</p>
-            {city && <p>Location: {city}</p>}
-            {weatherData ? (
-                <p>Temperature: {weatherData.current_temperature}°C</p>
-            ) : (
-                <p>No weather data available</p>
-            )}
+        <div className="bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-600 p-6 rounded-lg shadow-md max-w-xs mx-auto">
+            <div className="text-center text-white">
+                <p className="text-lg font-medium">Current Time: <span className="text-yellow-200">{currentTime}</span></p>
+                {city && (
+                    <p className="mt-2 text-lg">Location: <span className="text-yellow-200">{city}</span></p>
+                )}
+                {weatherData ? (
+                    <p className="mt-2 text-lg">Temperature: <span className="text-yellow-200">{weatherData.current_temperature}°C</span></p>
+                ) : (
+                    <p className="mt-2 text-lg text-gray-200">No weather data available</p>
+                )}
+            </div>
         </div>
     );
-};
+}
 
 export default WeatherWidget;
