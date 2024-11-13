@@ -1,3 +1,4 @@
+// types.ts
 export interface ObjectConfig {
     type: string;
     layer: number;
@@ -14,4 +15,9 @@ export interface ObjectConfig {
 
 export interface FrameConfig {
     objects: ObjectConfig[];
+}
+
+// Add this new type to describe the structure of `frames`
+export interface Frames {
+    [key: string]: { frames: Record<string, FrameConfig> };
 }

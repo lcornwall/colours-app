@@ -1,4 +1,6 @@
-export const frames = {
+import { Frames } from './types'; // Import the Frames type from types.ts
+
+export const frames: Frames = {
     "3-4": {
         frames: {
             "1": {
@@ -93,7 +95,7 @@ export const frames = {
                         action: 'GoToFrame',
                         position: 'top-centre',
                         time: 5000,
-                        nextFrameId: 6,
+                        nextFrameId: '6',
                     },
 
                 ],
@@ -112,7 +114,7 @@ export const frames = {
                         action: 'GoToFrame',
                         position: 'top-centre',
                         time: 5000,
-                        nextFrameId: 7,
+                        nextFrameId: '7',
                     },
                 ],
             },
@@ -130,7 +132,7 @@ export const frames = {
                         layer: 1,
                         action: 'GoToFrame',
                         time: 5000,
-                        nextFrameId: 8,
+                        nextFrameId: '8',
                     },
                 ],
             },
