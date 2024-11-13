@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 interface WeatherWidgetProps {
-    updateInterval?: number; // Optional prop for interval, defaulting to 60000 ms
+    updateInterval?: number;
 }
 
 const WeatherWidget: React.FC<WeatherWidgetProps> = ({ updateInterval = 60000 }) => {
@@ -16,7 +16,6 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ updateInterval = 60000 })
     const [error, setError] = useState('');
     const [currentTime, setCurrentTime] = useState<string>('');
 
-    // Fetch weather data
     const fetchWeather = async (lat: string, lon: string) => {
         setLoading(true);
         setError('');
@@ -33,7 +32,6 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ updateInterval = 60000 })
         }
     };
 
-    // Fetch city data via API route
     const fetchCity = async (lat: string, lon: string) => {
         try {
             const response = await axios.get('/api/location', {
@@ -45,7 +43,6 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ updateInterval = 60000 })
         }
     };
 
-    // Get user location
     const getUserLocation = () => {
         if (!navigator.geolocation) {
             setError('Geolocation is not supported by your browser.');
@@ -64,7 +61,6 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ updateInterval = 60000 })
         );
     };
 
-    // Update time every interval
     const formatTime = () => {
         const date = new Date();
         return date.toLocaleTimeString([], {
@@ -81,7 +77,7 @@ const WeatherWidget: React.FC<WeatherWidgetProps> = ({ updateInterval = 60000 })
     useEffect(() => {
         if (latitude && longitude) {
             fetchWeather(latitude, longitude);
-            fetchCity(latitude, longitude); // Fetch city name via API route
+            fetchCity(latitude, longitude);
         }
     }, [latitude, longitude]);
 
