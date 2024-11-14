@@ -11,6 +11,7 @@ export interface ObjectConfig {
     time?: number;
     question?: string;
     answers?: { text: string; isCorrect: boolean }[];
+    newGameFrame?: number;
 }
 
 export interface FrameConfig {

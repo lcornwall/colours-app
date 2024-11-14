@@ -1,4 +1,4 @@
-import { Frames } from './types'; // Import the Frames type from types.ts
+import { Frames } from './types';
 
 export const frames: Frames = {
     "3-4": {
@@ -9,6 +9,7 @@ export const frames: Frames = {
                         type: 'Background',
                         imageSrc: '/Trees.jpg',
                         layer: 0,
+                        newGameFrame: 9,
                     },
                     {
                         type: 'Character',
@@ -51,6 +52,7 @@ export const frames: Frames = {
                         text: 'Click the colour of rose you would like!',
                         position: 'top-centre',
                         layer: 2,
+
                     },
                     {
                         type: 'Button',
@@ -229,7 +231,17 @@ export const frames: Frames = {
                     },
                 ],
             },
+            "9":
+            {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                    },
+                ],
+            },
         },
-    },
+    }
 };
 
