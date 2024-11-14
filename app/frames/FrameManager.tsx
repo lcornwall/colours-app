@@ -63,7 +63,7 @@ const FrameManager: React.FC<FrameManagerProps> = ({ ageRange }) => {
         <div
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="frame-manager"
+            className="frame-manager bg-smiley-doodles min-h-screen bg-repeat bg-center bg-cover"
         >
             <Frame frame={frameData[currentFrameId]} onNavigate={setCurrentFrameId} />
             <button onClick={navigateToNewGameFrame} className="arrow-button">↑</button>
