@@ -1,0 +1,49 @@
+.top-left {
+    top: 20px;
+    left: 20px;
+}
+
+.top-centre {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.top-right {
+    top: 20px;
+    right: 20px;
+}
+
+.centre-left {
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+}
+
+.centre {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.centre-right {
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+.bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+.bottom-centre {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.bottom-right {
+    bottom: 20px;
+    right: 20px;
+}

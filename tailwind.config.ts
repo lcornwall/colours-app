@@ -12,8 +12,13 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      backgroundImage: {
+        'loading-doodles': "url('/loadingDoodles.PNG')",
+        'character-doodles': "url('/characterBackground.PNG')",
+      },
     },
   },
   plugins: [],
 };
+
 export default config;
