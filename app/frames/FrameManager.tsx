@@ -11,33 +11,38 @@ interface FrameManagerProps {
 const FrameManager: React.FC<FrameManagerProps> = ({ ageRange }) => {
     const [currentFrameId, setCurrentFrameId] = useState<string | null>(null);
     const [frameData, setFrameData] = useState<{ [frameId: string]: FrameConfig } | null>(null);
-    const [newGameFrameId, setNewGameFrameId] = useState<string | null>(null);
-
+    const [startGameFrameIds, setStartGameFrameIds] = useState<string[]>([]);
+    const [currentStartGameIndex, setCurrentStartGameIndex] = useState<number>(0);
     const [touchStartY, setTouchStartY] = useState<number | null>(null);
 
     useEffect(() => {
         if (frames[ageRange]) {
             const availableFrames = frames[ageRange].frames;
-            setCurrentFrameId(Object.keys(availableFrames)[0]);
             setFrameData(availableFrames);
 
-            const startFrame = availableFrames[Object.keys(availableFrames)[0]];
-            const newGameFrameObject = startFrame.objects.find(obj => obj.newGameFrame);
-            if (newGameFrameObject && newGameFrameObject.newGameFrame) {
-                setNewGameFrameId(newGameFrameObject.newGameFrame.toString());
+            const startGameIds = Object.entries(availableFrames)
+                .filter(([_, frame]) => frame.objects.some(obj => obj.startGame))
+                .map(([frameId]) => frameId);
+
+            if (startGameIds.length > 0) {
+                setStartGameFrameIds(startGameIds);
+                setCurrentFrameId(startGameIds[0]);
             } else {
-                console.warn("No `newGameFrame` defined in the start frame.");
+                console.warn('No frames with `startGame: true` found.');
             }
         } else {
             console.error(`No frames available for age group: ${ageRange}`);
         }
     }, [ageRange]);
 
-    const navigateToNewGameFrame = () => {
-        if (frameData && newGameFrameId && frameData[newGameFrameId]) {
-            setCurrentFrameId(newGameFrameId);
+    const navigateToNextStartGameFrame = () => {
+        if (startGameFrameIds.length > 0) {
+            const nextIndex = (currentStartGameIndex + 1) % startGameFrameIds.length;
+            setCurrentStartGameIndex(nextIndex);
+
+            setCurrentFrameId(startGameFrameIds[nextIndex]);
         } else {
-            console.warn("New game frame is not available in the current frame data.");
+            console.warn('No startGame frames to navigate to.');
         }
     };
 
@@ -49,9 +54,11 @@ const FrameManager: React.FC<FrameManagerProps> = ({ ageRange }) => {
         if (touchStartY === null) return;
         const touchEndY = e.changedTouches[0].clientY;
         const swipeDistance = touchStartY - touchEndY;
+
         if (swipeDistance > 50) {
-            navigateToNewGameFrame();
+            navigateToNextStartGameFrame();
         }
+
         setTouchStartY(null);
     };
 
@@ -63,13 +70,12 @@ const FrameManager: React.FC<FrameManagerProps> = ({ ageRange }) => {
         <div
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
-            className="frame-manager"
+            className="frame-manager bg-smiley-doodles min-h-screen bg-repeat bg-center bg-cover"
         >
             <Frame frame={frameData[currentFrameId]} onNavigate={setCurrentFrameId} />
-            <button onClick={navigateToNewGameFrame} className="arrow-button">↑</button>
+            <button onClick={navigateToNextStartGameFrame} className="arrow-button">↑</button>
         </div>
     );
 };
 
 export default FrameManager;
-

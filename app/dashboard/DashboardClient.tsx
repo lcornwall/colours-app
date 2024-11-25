@@ -54,24 +54,44 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
         <div className="bg-character-doodles bg-repeat min-h-screen bg-gray-100 p-6 flex items-center justify-center">
             <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
                 <h1 className="text-5xl font-bold mb-4 bg-gradient-to-r from-red-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500 bg-clip-text text-transparent leading-tight text-center">
-                    Welcome to the Dashboard
+                    Dashboard
                 </h1>
 
                 {username ? (
                     <>
-                        <h2 className="text-2xl font-semibold mb-4 text-center">Welcome back, {username}!</h2>
-                        {error ? (
-                            <p className="text-red-500 text-center">{error}</p>
-                        ) : ageMessage ? (
-                            <p className="text-lg font-medium text-center">{ageMessage}</p>
-                        ) : (
-                            <p className="text-center">Loading age...</p>
-                        )}
+                        <div className="flex justify-center mb-4">
+                            <div className="relative inline-block bg-gray-100 text-center px-6 py-4 rounded-2xl shadow-md">
+                                <h2 className="text-2xl font-semibold">Welcome back, {username}!</h2>
+                                <div className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-[10px] border-gray-100 border-t-transparent border-r-transparent"></div>
+                            </div>
+                        </div>
+
+                        <div className="flex justify-center">
+                            <div className="relative inline-block bg-gray-100 text-center px-6 py-4 rounded-2xl shadow-md">
+                                {error ? (
+                                    <p className="text-red-500">{error}</p>
+                                ) : ageMessage ? (
+                                    <p className="text-lg font-medium">{ageMessage}</p>
+                                ) : (
+                                    <p className="text-lg font-medium">Loading age...</p>
+                                )}
+                                <div className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-[10px] border-gray-100 border-t-transparent border-r-transparent"></div>
+                            </div>
+                        </div>
                     </>
                 ) : (
-                    <h2 className="text-2xl font-semibold mb-4 text-center">Welcome to our platform!</h2>
+                    <div className="flex justify-center">
+                        <div className="relative inline-block bg-gray-100 text-center px-6 py-4 rounded-2xl shadow-md">
+                            <h2 className="text-2xl font-semibold">Welcome to our platform!</h2>
+                            <div className="absolute bottom-[-10px] left-1/2 transform -translate-x-1/2 w-0 h-0 border-[10px] border-gray-100 border-t-transparent border-r-transparent"></div>
+                        </div>
+                    </div>
                 )}
 
+
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <img src="/Gilgili.png" alt="Gilgili" style={{ width: '100px', height: 'auto', marginTop: '10px' }} />
+                </div>
                 <WeatherWidget />
 
                 <div className="mt-6 flex flex-col items-center space-y-4">
