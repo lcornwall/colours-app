@@ -464,7 +464,236 @@ export const frames: Frames = {
                     },
                 ],
             },
+            // Sky Game
+            "18": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/blueSky.jpg',
+                        layer: 0,
+                        newGameFrame: 1,
+                        startGame: true,
+                    },
+                    {
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'Do you want to play the leaf game with me?',
+                        position: 'top-centre',
+                        layer: 2,
+                    },
+                    {
+                        type: 'Button',
+                        layer: 3,
+                        action: 'GoToFrame',
+                        nextFrameId: '19',
+                        position: 'bottom-centre',
+                        color: 'green',
+                        text: 'Click to Play!',
+                    },
+                ],
+            },
+            "19": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/blankLeaf.png',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'Click the colour of leaf you would like!',
+                        position: 'top-centre',
+                        layer: 2,
+
+                    },
+                    {
+                        type: 'Button',
+                        layer: 3,
+                        action: 'GoToFrame',
+                        nextFrameId: '20',
+                        color: 'red',
+                        position: 'bottom-left',
+                        text: 'Red',
+                    },
+                    {
+                        type: 'Button',
+                        layer: 4,
+                        action: 'GoToFrame',
+                        nextFrameId: '21',
+                        color: 'green',
+                        position: 'bottom-centre',
+                        text: 'Green',
+                    },
+                    {
+                        type: 'Button',
+                        layer: 5,
+                        action: 'GoToFrame',
+                        nextFrameId: '22',
+                        color: 'blue',
+                        position: 'bottom-right',
+                        text: 'Blue',
+                    },
+                ],
+            },
+            "20": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/redLeaf.png',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'You picked me a red leaf!',
+                        layer: 1,
+                        action: 'GoToFrame',
+                        position: 'top-centre',
+                        time: 5000,
+                        nextFrameId: '23',
+                    },
+
+                ],
+            },
+            "21": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/greenLeaf.png',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'You picked me a green leaf!',
+                        layer: 1,
+                        action: 'GoToFrame',
+                        position: 'top-centre',
+                        time: 5000,
+                        nextFrameId: '24',
+                    },
+                ],
+            },
+            "22": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/blueLeaf.jpg',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'You picked me a blue leaf!',
+                        position: 'top-centre',
+                        layer: 1,
+                        action: 'GoToFrame',
+                        time: 5000,
+                        nextFrameId: '25',
+                    },
+                ],
+            },
+            "23": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
+                        position: 'bottom-centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'Time for a quiz!',
+                        position: 'bottom-left',
+                        layer: 2,
+                    },
+                    {
+                        type: 'Quiz',
+                        question: 'What color leaf did you pick?',
+                        answers: [
+                            { text: "The leaf was red.", isCorrect: true },
+                            { text: "The leaf was blue.", isCorrect: false },
+                            { text: "The leaf was green.", isCorrect: false },
+                        ],
+                        layer: 3,
+                    },
+                ],
+            },
+            "24": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
+                        position: 'bottom-centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'Time for a quiz!',
+                        position: 'bottom-left',
+                        layer: 2,
+                    },
+                    {
+                        type: 'Quiz',
+                        question: 'What color leaf did you pick?',
+                        answers: [
+                            { text: "The leaf was red.", isCorrect: false },
+                            { text: "The leaf was blue.", isCorrect: false },
+                            { text: "The leaf was green.", isCorrect: true },
+                        ],
+                        layer: 3,
+                    },
+                ],
+            },
+            "25": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                    },
+                    {
+                        type: 'Character',
+                        imageSrc: '/Gilgili.png',
+                        position: 'bottom-centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: 'Time for a quiz!',
+                        position: 'bottom-left',
+                        layer: 2,
+                    },
+                    {
+                        type: 'Quiz',
+                        question: 'What color leaf did you pick?',
+                        answers: [
+                            { text: "The leaf was red.", isCorrect: false },
+                            { text: "The leaf was blue.", isCorrect: true },
+                            { text: "The leaf was green.", isCorrect: false },
+                        ],
+                        layer: 3,
+                    },
+                ],
+            },
         }
     }
 };
-
