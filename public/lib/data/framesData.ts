@@ -15,19 +15,25 @@ export const frames: Frames = {
                     },
                     {
                         type: 'Character',
-                        imageSrc: '/Gilgili.png',
-                        position: 'centre',
+                        imageSrc: '/Gabbu.png',
+                        position: 'centre-left',
                         layer: 1,
                     },
                     {
-                        type: 'Speak',
-                        text: 'Do you want to play the roses game with me?',
-                        position: 'top-centre',
+                        type: 'Character',
+                        imageSrc: '/Kaka.png',
+                        position: 'centre-right',
                         layer: 2,
                     },
                     {
-                        type: 'Button',
+                        type: 'Speak',
+                        text: "Let's play the roses game?",
+                        position: 'top-centre',
                         layer: 3,
+                    },
+                    {
+                        type: 'Button',
+                        layer: 4,
                         action: 'GoToFrame',
                         nextFrameId: '2',
                         position: 'bottom-centre',
@@ -149,8 +155,8 @@ export const frames: Frames = {
                     },
                     {
                         type: 'Character',
-                        imageSrc: '/Gilgili.png',
-                        position: 'bottom-centre',
+                        imageSrc: '/Didi.png',
+                        position: 'bottom-right',
                         layer: 1,
                     },
                     {
@@ -180,8 +186,8 @@ export const frames: Frames = {
                     },
                     {
                         type: 'Character',
-                        imageSrc: '/Gilgili.png',
-                        position: 'bottom-centre',
+                        imageSrc: '/Didi.png',
+                        position: 'bottom-right',
                         layer: 1,
                     },
                     {
@@ -211,8 +217,8 @@ export const frames: Frames = {
                     },
                     {
                         type: 'Character',
-                        imageSrc: '/Gilgili.png',
-                        position: 'bottom-centre',
+                        imageSrc: '/Didi.png',
+                        position: 'bottom-right',
                         layer: 1,
                     },
                     {
