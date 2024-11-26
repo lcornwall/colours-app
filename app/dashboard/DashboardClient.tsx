@@ -11,6 +11,26 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
     const router = useRouter();
     const [ageMessage, setAgeMessage] = useState<string | null>(null);
     const [error, setError] = useState<string | null>(null);
+    const [randomImage, setRandomImage] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchRandomImage = async () => {
+            try {
+                const response = await fetch('/api/randomCharacter');
+                if (!response.ok) {
+                    console.error('Failed to fetch random image');
+                    return;
+                }
+
+                const data = await response.json();
+                setRandomImage(data.imagePath);
+            } catch (error) {
+                console.error('Error fetching random image', error);
+            }
+        };
+
+        fetchRandomImage();
+    }, []);
 
     useEffect(() => {
         const fetchAge = async () => {
@@ -88,9 +108,16 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
                     </div>
                 )}
 
-
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                    <img src="/Gilgili.png" alt="Gilgili" style={{ width: '100px', height: 'auto', marginTop: '10px' }} />
+                    {randomImage ? (
+                        <img
+                            src={randomImage}
+                            alt="Random Character"
+                            style={{ width: '100px', height: 'auto', marginTop: '10px' }}
+                        />
+                    ) : (
+                        <p>Loading image...</p>
+                    )}
                 </div>
                 <WeatherWidget />
 
