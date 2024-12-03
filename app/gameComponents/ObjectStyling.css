@@ -1,49 +1,58 @@
 .top-left {
-    top: 20px;
-    left: 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 .top-centre {
-    top: 20px;
+    position: absolute;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .top-right {
-    top: 20px;
-    right: 20px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .centre-left {
+    position: absolute;
     top: 50%;
-    left: 20px;
+    left: 10px;
     transform: translateY(-50%);
 }
 
 .centre {
+    position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 .centre-right {
+    position: absolute;
     top: 50%;
-    right: 20px;
+    right: 10px;
     transform: translateY(-50%);
 }
 
 .bottom-left {
-    bottom: 20px;
-    left: 20px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
 }
 
 .bottom-centre {
-    bottom: 20px;
+    position: absolute;
+    bottom: 10px;
     left: 50%;
     transform: translateX(-50%);
 }
 
 .bottom-right {
-    bottom: 20px;
-    right: 20px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
