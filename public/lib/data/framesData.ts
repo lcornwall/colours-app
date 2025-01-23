@@ -9,7 +9,7 @@ export const frames: Frames = {
                         type: 'Background',
                         imageSrc: '/Trees.jpg',
                         layer: 0,
-                        newGameFrame: 9, //update
+                        newGameFrame: 10, //update
                         startGame: true,
                     },
 
