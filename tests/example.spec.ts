@@ -16,10 +16,28 @@ test.beforeAll(async () => {
 });
 
 test.afterAll(() => {
-    serverProcess.kill();
+    if (serverProcess) {
+        serverProcess.kill('SIGTERM'); // Forcefully kill the process
+    }
 });
 
-test('basic navigation', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+test('basic navigation and form submission', async ({ page }) => {
+    // Navigate to the homepage
+    await page.goto('http://localhost:3001');
+
+    // Check that the h1 tag has the correct text
     await expect(page.locator('h1')).toHaveText('Start Learning Colours!');
+
+    // Fill in the form fields
+    await page.fill('input[name="username"]', 'testuser');
+    await page.fill('input[name="password"]', 'password123');
+
+    // Submit the form
+    await page.click('button[type="submit"]');
+
+    // Wait for navigation or any other action after form submission
+    await page.waitForNavigation();
+
+    // Check that the form submission was successful
+    await expect(page.locator('.success-message')).toHaveText('Form submitted successfully!');
 });
