@@ -2135,5 +2135,188 @@ export const frames: Frames = {
             },
 
         }
+
+    },
+    "4-5": {
+        frames: {
+            // CROW GAME
+            "1": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/kidsFlowers.webp',
+                        layer: 0,
+                        newGameFrame: 3, // change
+                        startGame: true,
+                    },
+
+                    {
+                        type: 'Gif',
+                        imageSrc: '/crow.gif',
+                        position: 'centre',
+                        layer: 1,
+                    },
+
+                    {
+                        type: 'Button',
+                        layer: 2,
+                        action: 'GoToFrame',
+                        nextFrameId: '2',
+                        position: 'bottom-centre',
+                        color: 'black',
+                    },
+                ]
+            },
+            "2": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/kidsFlowers.webp',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Gif',
+                        imageSrc: '/crow.gif',
+                        position: 'centre',
+                        layer: 1,
+                    },
+
+                    {
+                        type: 'Speak',
+                        text: "Kala!",
+                        position: 'top-centre',
+                        layer: 2,
+                        action: 'GoToFrame',
+                        time: 1000,
+                        nextFrameId: '1',
+                    },
+
+                ]
+            },
+            // COW GAME
+            "3": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/kidsFlowers.webp',
+                        layer: 0,
+                        newGameFrame: 5,
+                        startGame: true,
+                    },
+
+                    {
+                        type: 'Gif',
+                        imageSrc: '/cow.gif',
+                        position: 'centre',
+                        layer: 1,
+                    },
+
+                    {
+                        type: 'Button',
+                        layer: 2,
+                        action: 'GoToFrame',
+                        nextFrameId: '4',
+                        position: 'bottom-centre',
+                        color: 'white',
+                    },
+                ]
+            },
+            "4": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/kidsFlowers.webp',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Gif',
+                        imageSrc: '/cow.gif',
+                        position: 'centre',
+                        layer: 1,
+                    },
+
+                    {
+                        type: 'Speak',
+                        text: "Saved!",
+                        position: 'top-centre',
+                        layer: 2,
+                        action: 'GoToFrame',
+                        time: 1000,
+                        nextFrameId: '3',
+                    },
+
+                ]
+            },
+            // SKY SHAKE GAME
+            "5": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                        newGameFrame: 3, // change
+                        startGame: true,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Larli.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Hello, shake your mouse to change the sky!",
+                        position: 'top-centre',
+                        layer: 2,
+                        action: 'ShakeMouse',
+                        nextFrameId: '6',
+                    },
+
+
+                ]
+            },
+            "6": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/clouds.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Speak',
+                        text: "Halka neela!",
+                        position: 'top-centre',
+                        layer: 1,
+                        action: 'ShakeMouse',
+                        nextFrameId: '7',
+                    },
+
+                ]
+            },
+            "7": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/evening.avif',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Speak',
+                        text: "Gahra neela!",
+                        position: 'top-centre',
+                        layer: 1,
+                        action: 'ShakeMouse',
+                        nextFrameId: '6',
+                    },
+
+                ]
+            },
+
+        }
     }
 }

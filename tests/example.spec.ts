@@ -2,42 +2,81 @@ import { test, expect } from '@playwright/test';
 import { ChildProcessWithoutNullStreams, spawn } from 'child_process';
 
 let serverProcess: ChildProcessWithoutNullStreams;
+let serverUrl: string;
 
 test.beforeAll(async () => {
+    console.log('Starting server...');
+
     serverProcess = spawn('pnpm', ['dev'], { shell: true });
 
-    await new Promise((resolve) => {
+    serverUrl = await new Promise((resolve, reject) => {
+        const timeout = setTimeout(() => {
+            reject(new Error('Server did not start in time (60s timeout)'));
+        }, 60000); // Wait max 60 seconds
+
         serverProcess.stdout.on('data', (data) => {
-            if (data.toString().includes('http://localhost:3000')) {
-                resolve(null);
+            const output = data.toString();
+            console.log(output); // Log server output for debugging
+
+            const urlMatch = output.match(/http:\/\/localhost:(\d+)/);
+            if (urlMatch) {
+                clearTimeout(timeout);
+                resolve(`http://localhost:${urlMatch[1]}`);
             }
         });
+
+        serverProcess.stderr.on('data', (data) => {
+            console.error(data.toString());
+        });
     });
-});
+
+    console.log(`Server started at ${serverUrl}`);
+}, 90000); // Allow up to 90s for the setup
 
 test.afterAll(() => {
+    console.log('Stopping server...');
     if (serverProcess) {
-        serverProcess.kill('SIGTERM'); // Forcefully kill the process
+        serverProcess.kill('SIGTERM'); // Gracefully stop the server
     }
 });
 
-test('basic navigation and form submission', async ({ page }) => {
+test('login flow', async ({ page }) => {
+    console.log('Starting login test...');
+
     // Navigate to the homepage
-    await page.goto('http://localhost:3001');
+    await page.goto(serverUrl, { timeout: 60000 });
+    console.log(`Navigated to ${serverUrl}`);
 
-    // Check that the h1 tag has the correct text
-    await expect(page.locator('h1')).toHaveText('Start Learning Colours!');
+    // Verify homepage title
+    await expect(page.locator('h1')).toHaveText('Start Learning Colours!', { timeout: 20000 });
+    console.log('Verified homepage title');
 
-    // Fill in the form fields
-    await page.fill('input[name="username"]', 'testuser');
-    await page.fill('input[name="password"]', 'password123');
+    // Click "Log In" and wait for navigation
+    await page.click('text=Log In');
+    console.log('Clicked Log In button');
 
-    // Submit the form
+    // Wait for login page to load
+    await page.waitForURL(`${serverUrl}/login`, { timeout: 60000 });
+    console.log('Navigated to login page');
+
+    // Ensure username input is visible before filling
+    await page.waitForSelector('input[name="username"]', { state: 'visible', timeout: 60000 });
+    console.log('Username input is visible');
+
+    // Fill in username and password
+    await page.fill('input[name="username"]', 'libby');
+    await page.fill('input[name="password"]', 'test');
+    console.log('Filled login form');
+
+    // Click "Login" button
     await page.click('button[type="submit"]');
+    console.log('Clicked Login button');
 
-    // Wait for navigation or any other action after form submission
-    await page.waitForNavigation();
+    // Wait for dashboard navigation
+    await page.waitForURL(`${serverUrl}/dashboard`, { timeout: 60000 });
+    console.log('Navigated to dashboard');
 
-    // Check that the form submission was successful
-    await expect(page.locator('.success-message')).toHaveText('Form submitted successfully!');
+    // Verify dashboard loaded
+    await expect(page).toHaveURL(`${serverUrl}/dashboard`);
+    console.log('Verified dashboard URL');
 });
