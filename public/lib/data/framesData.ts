@@ -2256,7 +2256,7 @@ export const frames: Frames = {
                         type: 'Background',
                         imageSrc: '/Trees.jpg',
                         layer: 0,
-                        newGameFrame: 3, // change
+                        newGameFrame: 8,
                         startGame: true,
                     },
 
@@ -2314,6 +2314,287 @@ export const frames: Frames = {
                         nextFrameId: '6',
                     },
 
+                ]
+            },
+            // NUMBERS COLOURS
+            "8": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                        newGameFrame: 8,
+                        startGame: true,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Gilgili.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Hello, you can pick any colour to change your mouse and learn a number!",
+                        position: 'top-centre',
+                        layer: 2,
+                        action: 'GoToFrame',
+                        time: 2000,
+                        nextFrameId: '9',
+                    },
+
+
+                ]
+            },
+
+            "9": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/cartoons.jpg',
+                        layer: 0,
+                        newGameFrame: 8, // change
+                        startGame: true,
+                    },
+
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "10",
+                        position: "top-left",
+                        color: "white",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "11",
+                        position: "top-right",
+                        color: "black",
+
+                    },
+
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "12",
+                        position: "top-centre",
+                        color: "grey",
+
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "13",
+                        position: "centre-left",
+                        color: "lightgreen",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "14",
+                        position: "centre-right",
+                        color: "darkgreen",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "15",
+                        position: "centre",
+                        color: "red",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "16",
+                        position: "bottom-centre",
+                        color: "darkred",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "17",
+                        position: "bottom-left",
+                        color: "lightblue",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "18",
+                        position: "bottom-right",
+                        color: "darkblue",
+                    }
+                ]
+            },
+            "10": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "white",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "Safed, Ek!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        time: 3000,
+                    }
+                ]
+            },
+            "11": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "black",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "Kala, do!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        time: 3000,
+                    }
+                ]
+            },
+            "12": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "grey",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "Gre, teen!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        time: 3000,
+                    }
+                ]
+            },
+            "13": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "lightgreen",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "Halka hara, char!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        time: 3000,
+                    }
+                ]
+            },
+            "14": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "darkgreen",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "Gara hara, panch!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        time: 3000,
+                    }
+                ]
+            },
+            "15": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "red",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "Halka lal, chhah!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        time: 3000,
+                    }
+                ]
+            },
+            "16": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "darkred",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "Gara lal, saat!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        time: 3000,
+                    }
+                ]
+            },
+            "17": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "lightblue",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "Halka neela, aath!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        time: 3000,
+                    }
+                ]
+            },
+
+            "18": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "darkblue",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "Gahra neela, nau!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        time: 3000,
+                    }
                 ]
             },
 

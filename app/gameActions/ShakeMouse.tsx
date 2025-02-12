@@ -11,62 +11,62 @@ interface ShakeToChangeFrameProps {
 }
 
 const ShakeToChangeFrame: React.FC<ShakeToChangeFrameProps> = ({ action, onNavigate }) => {
-    const lastShakeTime = useRef(0);
-    const shakeCount = useRef(0);
+    console.log("rendered");
     const lastMousePosition = useRef({ x: 0, y: 0 });
+    const directionHistory = useRef<string[]>([]);
+    const lastShakeTime = useRef(0);
 
     useEffect(() => {
-        const handleDeviceShake = (event: DeviceMotionEvent) => {
-            const acceleration = event.acceleration;
-            if (acceleration && acceleration.x && acceleration.y && acceleration.z) {
-                const magnitude = Math.sqrt(acceleration.x ** 2 + acceleration.y ** 2 + acceleration.z ** 2);
-                const now = Date.now();
-
-                if (magnitude > 10 && now - lastShakeTime.current > 1000) {
-                    lastShakeTime.current = now;
-                    if (action.nextFrameId) {
-                        console.log(`Shaking detected! Navigating to frame ${action.nextFrameId}.`);
-                        onNavigate(action.nextFrameId);
-                    }
-                }
-            }
-        };
-
         const handleMouseShake = (event: MouseEvent) => {
-            const { x, y } = lastMousePosition.current;
-            const deltaX = Math.abs(event.clientX - x);
-            const deltaY = Math.abs(event.clientY - y);
+            console.log('Mouse moved:', event.clientX, event.clientY); // Debugging line
 
+            const { x, y } = lastMousePosition.current;
+            const deltaX = event.clientX - x;
+            const deltaY = event.clientY - y;
             lastMousePosition.current = { x: event.clientX, y: event.clientY };
 
-            if (deltaX > 30 || deltaY > 30) {
-                shakeCount.current++;
-                if (shakeCount.current > 5) {
-                    if (action.nextFrameId) {
-                        console.log(`Mouse shaking detected! Navigating to frame ${action.nextFrameId}.`);
-                        onNavigate(action.nextFrameId);
-                        shakeCount.current = 0;
-                    }
+            let direction = '';
+            if (Math.abs(deltaX) > Math.abs(deltaY)) {
+                direction = deltaX > 0 ? 'right' : 'left';
+            } else {
+                direction = deltaY > 0 ? 'down' : 'up';
+            }
+
+            console.log('Direction:', direction); // Debugging line
+            console.log('Direction History:', directionHistory.current); // Debugging line
+
+            if (directionHistory.current.length > 0) {
+                const lastDirection = directionHistory.current[directionHistory.current.length - 1];
+
+                // Detect if the movement is alternating (left-right or up-down)
+                if (
+                    (lastDirection === 'left' && direction === 'right') ||
+                    (lastDirection === 'right' && direction === 'left') ||
+                    (lastDirection === 'up' && direction === 'down') ||
+                    (lastDirection === 'down' && direction === 'up')
+                ) {
+                    directionHistory.current.push(direction);
+                } else {
+                    directionHistory.current = [direction]; // Reset if not alternating
                 }
+
+                if (directionHistory.current.length >= 3 && Date.now() - lastShakeTime.current > 300) {
+                    console.log(`Mouse wiggle detected! Navigating to frame ${action.nextFrameId}.`);
+                    if (action.nextFrameId) {
+                        console.log('Calling onNavigate with:', action.nextFrameId); // Debugging line
+                        onNavigate(action.nextFrameId);
+                    }
+                    directionHistory.current = [];
+                    lastShakeTime.current = Date.now();
+                }
+            } else {
+                directionHistory.current.push(direction);
             }
         };
-
-        if ('DeviceMotionEvent' in window && 'requestPermission' in DeviceMotionEvent) {
-            (DeviceMotionEvent as any).requestPermission()
-                .then((permissionState: string) => {
-                    if (permissionState === 'granted') {
-                        window.addEventListener('devicemotion', handleDeviceShake);
-                    }
-                })
-                .catch(console.error);
-        } else {
-            window.addEventListener('devicemotion', handleDeviceShake);
-        }
 
         window.addEventListener('mousemove', handleMouseShake);
 
         return () => {
-            window.removeEventListener('devicemotion', handleDeviceShake);
             window.removeEventListener('mousemove', handleMouseShake);
         };
     }, [action, onNavigate]);
@@ -75,4 +75,3 @@ const ShakeToChangeFrame: React.FC<ShakeToChangeFrameProps> = ({ action, onNavig
 };
 
 export default ShakeToChangeFrame;
-
