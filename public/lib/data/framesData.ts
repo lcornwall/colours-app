@@ -2447,7 +2447,7 @@ export const frames: Frames = {
                         position: "top-centre",
                         layer: 1,
                         action: "GoToFrame",
-                        nextFrameId: "9",
+                        nextFrameId: "95",
                         time: 3000,
                     }
                 ]
@@ -2598,6 +2598,489 @@ export const frames: Frames = {
                 ]
             },
 
+        }
+    },
+
+    "7-8": {
+        frames: {
+            "1": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Holi.jpg',
+                        layer: 0,
+                        startGame: true,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Larli.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Hello, let's learn colour combinations, please pick my dress for the Holi festival!",
+                        position: 'top-centre',
+                        layer: 2,
+                        action: 'GoToFrame',
+                        time: 4000,
+                        nextFrameId: '2',
+                    },
+
+
+                ]
+            },
+
+            "2": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: 'white',
+                        layer: 0,
+                    },
+
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "top-left",
+                        color: "blue",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "top-centre",
+                        color: "yellow",
+
+                    },
+
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "3",
+                        position: "top-right",
+                        color: "green",
+
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "centre-left",
+                        color: "yellow",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "centre",
+                        color: "red",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "4",
+                        position: "centre-right",
+                        color: "orange",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "bottom-centre",
+                        color: "blue",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "bottom-left",
+                        color: "red",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "5",
+                        position: "bottom-right",
+                        color: "violet",
+                    }
+                ]
+            },
+            "3": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "/greenDress.jpg",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "You picked a green dress, what fun!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "6",
+                        time: 3000,
+                    }
+                ]
+            },
+            "4": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "/orangeDress.jpg",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "You picked an orange dress, what fun!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "6",
+                        time: 3000,
+                    }
+                ]
+            },
+            "5": {
+                "objects": [
+                    {
+                        type: "Background",
+                        imageSrc: "/violetDress.jpg",
+                        layer: 0
+                    },
+                    {
+                        type: "Speak",
+                        text: "You picked a violet dress, what fun!",
+                        position: "top-centre",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "6",
+                        time: 3000,
+                    }
+                ]
+            },
+
+            "6": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Holi.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Kaka.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "What fun. Now let's use these new colours to colour a house!",
+                        position: 'top-centre',
+                        layer: 2,
+                        action: 'GoToFrame',
+                        time: 4000,
+                        nextFrameId: '7',
+                    },
+
+
+                ]
+            },
+
+            "7": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/blankHouse.png',
+                        layer: 0,
+                    },
+
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "bottom-left",
+                        action: "GoToFrame",
+                        nextFrameId: "8",
+                        color: "orange",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "9",
+                        position: "bottom-centre",
+                        color: "green",
+
+                    },
+
+                    {
+                        type: "Button",
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "10",
+                        position: "bottom-right",
+                        color: "violet",
+
+                    },
+                ]
+
+            },
+
+            "8": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/orangeHouse.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'cornerCharacter',
+                        imageSrc: '/characters/Didi.png',
+                        position: 'bottom-centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "An orange house - bahut badiya! Thanks for playing",
+                        position: 'top-centre',
+                        layer: 2,
+                    },
+
+
+                ]
+            },
+
+            "9": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/greenHouse.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'cornerCharacter',
+                        imageSrc: '/characters/Didi.png',
+                        position: 'bottom-centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "A green house - bahut badiya! Thanks for playing",
+                        position: 'top-centre',
+                        layer: 2,
+                    },
+
+
+                ]
+            },
+
+            "10": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/violetHouse.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Didi.png',
+                        position: 'bottom-centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "A violet house - bahut badiya! Thanks for playing",
+                        position: 'top-centre',
+                        layer: 2,
+                    },
+
+
+                ]
+            },
+        }
+    },
+    "5-6": {
+        frames: {
+            "1": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                        newGameFrame: 8, // CHANGE
+                        startGame: true,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Gilgili.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Would you like to play a game related to primary colours?",
+                        position: 'top-centre',
+                        layer: 2,
+                        action: 'GoToFrame',
+                        nextFrameId: '2',
+                        time: 4000,
+                    },
+
+                ]
+            },
+            "2": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Larli.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Help me pick a dress colour?",
+                        position: 'top-centre',
+                        layer: 1,
+                    },
+
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "bottom-left",
+                        color: "blue",
+                        text: "Neela",
+                        action: "GoToFrame",
+                        nextFrameId: "5",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "bottom-centre",
+                        color: "yellow",
+                        text: "Peela",
+                        action: "GoToFrame",
+                        nextFrameId: "6",
+
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "bottom-right",
+                        color: "red",
+                        text: "Lal",
+                        action: "GoToFrame",
+                        nextFrameId: "7",
+                    },
+                ]
+            },
+            "5": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/blueDress.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Larli.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Thanks for picking me a blue (neela) dress!",
+                        position: 'top-centre',
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "8",
+                        time: 4000
+                    },
+                ]
+            },
+            "6": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/yellowDress.webp',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Larli.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Thanks for picking me a yellow (peela) dress!",
+                        position: 'top-centre',
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "8",
+                        time: 4000
+                    },
+                ]
+            },
+            "7": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/redDress.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Larli.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Thanks for picking me a red (lal) dress!",
+                        position: 'top-centre',
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "8",
+                        time: 4000
+                    },
+                ]
+            },
+            "8": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/primaryColours.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Baubla.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "HMM you learned red, blue and yellow! The primary colours! Bye, I must clean!",
+                        position: 'top-centre',
+                        layer: 1,
+                    },
+                ]
+            }
         }
     }
 }
