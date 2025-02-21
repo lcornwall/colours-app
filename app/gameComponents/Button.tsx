@@ -1,16 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Button = ({ color, text, onClick }: { color: string; text: string; onClick: () => void }) => {
+const Button = ({ color, text, onClick }: { color: string; text?: string; onClick: () => void }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const isTextEmpty = !text || text.trim() === '';
+
     return (
         <button
             style={{
                 backgroundColor: color,
                 color: 'white',
-                padding: '10px 20px',
+                padding: isTextEmpty ? '30px' : '10px 20px',
                 border: 'none',
-                borderRadius: '5px',
+                borderRadius: isTextEmpty ? '50px' : '5px',
+                width: isTextEmpty ? (isHovered ? '90px' : '80px') : 'auto',
+                height: isTextEmpty ? (isHovered ? '90px' : '80px') : 'auto',
                 cursor: 'pointer',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: isTextEmpty ? '0px' : '16px',
+                transition: 'all 0.2s ease-in-out' // Smooth transition for hover effect
             }}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             onClick={onClick}
         >
             {text}
@@ -19,3 +31,4 @@ const Button = ({ color, text, onClick }: { color: string; text: string; onClick
 };
 
 export default Button;
+

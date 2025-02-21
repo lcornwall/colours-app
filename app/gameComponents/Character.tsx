@@ -2,7 +2,7 @@ import React from 'react';
 
 const Character = ({ imageSrc }: { imageSrc: string }) => {
     return (
-        <img src={imageSrc} alt="Character" style={{ width: '180px', height: 'auto' }} />
+        <img src={imageSrc} alt="Character" style={{ width: '500px', height: '500px' }} />
     )
 };
 

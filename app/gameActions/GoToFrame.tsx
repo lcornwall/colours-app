@@ -1,3 +1,4 @@
+import next from 'next';
 import React, { useEffect } from 'react';
 
 interface Action {
@@ -32,6 +33,7 @@ const GoToFrameAction: React.FC<GoToFrameActionProps> = ({
             } else {
 
                 console.log(`Navigating to frame ${nextFrameId} immediately.`);
+                console.log(nextFrameId);
                 onNavigate(nextFrameId);
             }
         }
