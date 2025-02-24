@@ -2146,7 +2146,7 @@ export const frames: Frames = {
                         type: 'Background',
                         imageSrc: '/kidsFlowers.webp',
                         layer: 0,
-                        newGameFrame: 3, // change
+                        newGameFrame: 3,
                         startGame: true,
                     },
 
@@ -2353,7 +2353,7 @@ export const frames: Frames = {
                         type: 'Background',
                         imageSrc: '/cartoons.jpg',
                         layer: 0,
-                        newGameFrame: 8, // change
+                        newGameFrame: 1,
                         startGame: true,
                     },
 
@@ -2911,7 +2911,6 @@ export const frames: Frames = {
                         type: 'Background',
                         imageSrc: '/Trees.jpg',
                         layer: 0,
-                        newGameFrame: 8, // CHANGE
                         startGame: true,
                     },
 
@@ -3076,6 +3075,186 @@ export const frames: Frames = {
                     {
                         type: 'Speak',
                         text: "HMM you learned red, blue and yellow! The primary colours! Bye, I must clean!",
+                        position: 'top-centre',
+                        layer: 1,
+                    },
+                ]
+            }
+        }
+    },
+    "6-7": {
+        frames: {
+            "1": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/rainbow.webp',
+                        layer: 0,
+                        newGameFrame: 8, // CHANGE
+                        startGame: true,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Kaka.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Would you like to play a game related to secondary colours orange, green, and purple?",
+                        position: 'top-centre',
+                        layer: 2,
+                        action: 'GoToFrame',
+                        nextFrameId: '2',
+                        time: 4000,
+                    },
+
+                ]
+            },
+            "2": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/Trees.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Baubla.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Help me pick a dress colour?",
+                        position: 'top-centre',
+                        layer: 1,
+                    },
+
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "bottom-left",
+                        color: "green",
+                        text: "Hara",
+                        action: "GoToFrame",
+                        nextFrameId: "3",
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "bottom-centre",
+                        color: "orange",
+                        text: "Narangi",
+                        action: "GoToFrame",
+                        nextFrameId: "4",
+
+                    },
+                    {
+                        type: "Button",
+                        layer: 1,
+                        position: "bottom-right",
+                        color: "purple",
+                        text: "Baingani",
+                        action: "GoToFrame",
+                        nextFrameId: "5",
+                    },
+                ]
+            },
+            "3": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/greemDress.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Baubla.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Thanks for picking me a green (hara) dress!",
+                        position: 'top-centre',
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "6",
+                        time: 4000
+                    },
+                ]
+            },
+            "4": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/orangeDress.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Baubla.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Thanks for picking me an orange (narangi) dress!",
+                        position: 'top-centre',
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "6",
+                        time: 4000
+                    },
+                ]
+            },
+            "5": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/violetDress.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Larli.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "Thanks for picking me a purple (baingani) dress!",
+                        position: 'top-centre',
+                        layer: 1,
+                        action: "GoToFrame",
+                        nextFrameId: "6",
+                        time: 4000
+                    },
+                ]
+            },
+            "6": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/primaryColours.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Didi.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+                    {
+                        type: 'Speak',
+                        text: "HMM you learned green, purple and orange! Some secondary colours! Bye!",
                         position: 'top-centre',
                         layer: 1,
                     },
