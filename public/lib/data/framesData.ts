@@ -2640,41 +2640,17 @@ export const frames: Frames = {
                         layer: 0,
                     },
 
-                    {
-                        type: "Button",
-                        layer: 1,
-                        position: "top-left",
-                        color: "blue",
-                    },
-                    {
-                        type: "Button",
-                        layer: 1,
-                        position: "top-centre",
-                        color: "yellow",
-
-                    },
 
                     {
                         type: "Button",
                         layer: 1,
                         action: "GoToFrame",
                         nextFrameId: "3",
-                        position: "top-right",
+                        position: "centre-left",
                         color: "green",
 
                     },
-                    {
-                        type: "Button",
-                        layer: 1,
-                        position: "centre-left",
-                        color: "yellow",
-                    },
-                    {
-                        type: "Button",
-                        layer: 1,
-                        position: "centre",
-                        color: "red",
-                    },
+
                     {
                         type: "Button",
                         layer: 1,
@@ -2683,24 +2659,13 @@ export const frames: Frames = {
                         position: "centre-right",
                         color: "orange",
                     },
-                    {
-                        type: "Button",
-                        layer: 1,
-                        position: "bottom-centre",
-                        color: "blue",
-                    },
-                    {
-                        type: "Button",
-                        layer: 1,
-                        position: "bottom-left",
-                        color: "red",
-                    },
+
                     {
                         type: "Button",
                         layer: 1,
                         action: "GoToFrame",
                         nextFrameId: "5",
-                        position: "bottom-right",
+                        position: "centre",
                         color: "violet",
                     }
                 ]
