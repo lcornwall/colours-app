@@ -2268,10 +2268,14 @@ export const frames: Frames = {
                     },
                     {
                         type: 'Speak',
-                        text: "Hello, shake your mouse to change the sky!",
                         position: 'top-centre',
+                        text: "Hello, shake your mouse to change the sky!",
                         layer: 2,
-                        action: 'ShakeMouse',
+                    },
+                    {
+                        type: 'ShakeMouse',
+                        layer: 3,
+                        action: 'GoToNextFrame',
                         nextFrameId: '6',
                     },
 
@@ -2291,7 +2295,11 @@ export const frames: Frames = {
                         text: "Halka neela!",
                         position: 'top-centre',
                         layer: 1,
-                        action: 'ShakeMouse',
+                    },
+                    {
+                        type: 'ShakeMouse',
+                        layer: 2,
+                        action: 'GoToNextFrame',
                         nextFrameId: '7',
                     },
 
@@ -2301,7 +2309,7 @@ export const frames: Frames = {
                 objects: [
                     {
                         type: 'Background',
-                        imageSrc: '/evening.avif',
+                        imageSrc: '/evening.jpg',
                         layer: 0,
                     },
 
@@ -2310,7 +2318,11 @@ export const frames: Frames = {
                         text: "Gahra neela!",
                         position: 'top-centre',
                         layer: 1,
-                        action: 'ShakeMouse',
+                    },
+                    {
+                        type: 'ShakeMouse',
+                        layer: 2,
+                        action: 'GoToNextFrame',
                         nextFrameId: '6',
                     },
 
@@ -3225,6 +3237,41 @@ export const frames: Frames = {
                     },
                 ]
             }
+        }
+    },
+
+    // TESTING
+    "Seasons": {
+        frames: {
+            "1": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/primaryColours.jpg',
+                        layer: 0,
+                        startGame: true,
+                    },
+
+                    {
+                        type: 'Quiz',
+                        action: 'GoToFrame',
+                        correctAnswer: 5,
+                        nextFrameId: '2',
+                        text: 'What is 2 + 3?',
+                        color: 'teal',
+                        layer: 1,
+                    }
+                ]
+            },
+            "2": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/primaryColours.jpg',
+                        layer: 0,
+                    }
+                ]
+            },
         }
     }
 }

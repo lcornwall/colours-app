@@ -54,6 +54,10 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
     }, [username]);
 
     const handleAgeSelection = (ageRange: string) => {
+        if (ageRange === "Seasons") {
+            router.push("/seasonsPage");
+
+        }
         router.push(`/gamePage/${ageRange}`);
     };
 
@@ -156,6 +160,14 @@ const DashboardClient: React.FC<DashboardClientProps> = ({ username }) => {
                     >
                         Age 7-8
                     </button>
+
+                    <button
+                        onClick={() => handleAgeSelection("Seasons")}
+                        className="bg-gradient-to-r from-green-800 to-yellow-400 text-white font-bold py-4 px-10 rounded-full shadow-lg transition-transform transform hover:scale-110 text-xl"
+                    >
+                        Seasons
+                    </button>
+
                 </div>
 
                 {username && (

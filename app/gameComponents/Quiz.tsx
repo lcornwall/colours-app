@@ -1,63 +1,71 @@
 import React, { useState } from 'react';
-import './Quiz.css';
-
-interface Answer {
-    text: string;
-    isCorrect: boolean;
-}
 
 interface QuizProps {
-    question: string;
-    answers: Answer[];
+    correctAnswer: number;
+    text: string;
+    nextFrameId: string;
+    color?: string;
+    onNavigate: (frameId: string) => void;
 }
 
-const Quiz: React.FC<QuizProps> = ({ question, answers }) => {
-    const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+const Quiz: React.FC<QuizProps> = ({ correctAnswer, text, nextFrameId, color = 'blue', onNavigate }) => {
+    const [input, setInput] = useState('');
+    const [error, setError] = useState('');
     const [submitted, setSubmitted] = useState(false);
-    const [feedbackMessage, setFeedbackMessage] = useState<string | null>(null);
 
-    const handleSubmit = () => {
-        const isCorrect = answers.find(answer => answer.text === selectedAnswer)?.isCorrect || false;
-        setSubmitted(true);
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
 
-        if (isCorrect) {
-            setFeedbackMessage("Correct!");
+        const value = parseInt(input.trim(), 10);
+
+        if (isNaN(value)) {
+            setError('Enter a valid number.');
+            return;
+        }
+
+        if (value === correctAnswer) {
+            setError('');
+            setSubmitted(true);
+            onNavigate(nextFrameId);
         } else {
-            setFeedbackMessage("That's not correct! Try again.");
-            setSelectedAnswer(null);
-            setSubmitted(false);
+            setError('Incorrect. Try again!');
         }
     };
 
     return (
-        <div className="quiz-container">
-            <h2>{question}</h2>
-            <ul>
-                {answers.map((answer, index) => (
-                    <li key={index}>
-                        <label>
-                            <input
-                                type="radio"
-                                name="quiz"
-                                value={answer.text}
-                                checked={selectedAnswer === answer.text}
-                                onChange={() => setSelectedAnswer(answer.text)}
-                                disabled={submitted && answer.text !== selectedAnswer}
-                            />
-                            {answer.text}
-                        </label>
-                    </li>
-                ))}
-            </ul>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+            <label style={{ marginBottom: '10px', fontSize: '18px' }}>
+                {text}
+            </label>
+            <input
+                type="number"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                style={{
+                    padding: '10px',
+                    fontSize: '16px',
+                    borderRadius: '5px',
+                    marginBottom: '10px',
+                    width: '150px',
+                    textAlign: 'center'
+                }}
+                required
+            />
             <button
-                onClick={handleSubmit}
-                disabled={!selectedAnswer}
-                className="quiz-button"
+                type="submit"
+                style={{
+                    backgroundColor: color,
+                    color: 'white',
+                    padding: '10px 20px',
+                    border: 'none',
+                    borderRadius: '5px',
+                    cursor: 'pointer'
+                }}
             >
-                Submit Answer
+                Submit
             </button>
-            {feedbackMessage && <p className="feedback-message">{feedbackMessage}</p>}
-        </div>
+            {error && <div style={{ color: 'red', marginTop: '10px' }}>{error}</div>}
+        </form>
     );
 };
 

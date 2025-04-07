@@ -6,6 +6,7 @@ export interface ObjectConfig {
     imageSrc?: string;
     text?: string;
     action?: string;
+    correctAnswer?: number;
     nextFrameId?: string;
     color?: string;
     time?: number;
