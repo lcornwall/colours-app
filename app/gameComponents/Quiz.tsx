@@ -47,7 +47,6 @@ const Quiz: React.FC<QuizProps> = ({ correctAnswer, text, nextFrameId, color = '
                     borderRadius: '5px',
                     marginBottom: '10px',
                     width: '150px',
-                    textAlign: 'center'
                 }}
                 required
             />
