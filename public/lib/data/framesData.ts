@@ -2268,10 +2268,14 @@ export const frames: Frames = {
                     },
                     {
                         type: 'Speak',
-                        text: "Hello, shake your mouse to change the sky!",
                         position: 'top-centre',
+                        text: "Hello, shake your mouse to change the sky!",
                         layer: 2,
-                        action: 'ShakeMouse',
+                    },
+                    {
+                        type: 'ShakeMouse',
+                        layer: 3,
+                        action: 'GoToNextFrame',
                         nextFrameId: '6',
                     },
 
@@ -2291,7 +2295,11 @@ export const frames: Frames = {
                         text: "Halka neela!",
                         position: 'top-centre',
                         layer: 1,
-                        action: 'ShakeMouse',
+                    },
+                    {
+                        type: 'ShakeMouse',
+                        layer: 2,
+                        action: 'GoToNextFrame',
                         nextFrameId: '7',
                     },
 
@@ -2301,7 +2309,7 @@ export const frames: Frames = {
                 objects: [
                     {
                         type: 'Background',
-                        imageSrc: '/evening.avif',
+                        imageSrc: '/evening.jpg',
                         layer: 0,
                     },
 
@@ -2310,7 +2318,11 @@ export const frames: Frames = {
                         text: "Gahra neela!",
                         position: 'top-centre',
                         layer: 1,
-                        action: 'ShakeMouse',
+                    },
+                    {
+                        type: 'ShakeMouse',
+                        layer: 2,
+                        action: 'GoToNextFrame',
                         nextFrameId: '6',
                     },
 
@@ -3225,6 +3237,156 @@ export const frames: Frames = {
                     },
                 ]
             }
+        }
+    },
+
+    // TESTING
+    "Seasons": {
+        frames: {
+            "1": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/city.jpg',
+                        layer: 0,
+                        startGame: true,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Gabbu.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+
+                    {
+                        type: 'Speak',
+                        text: "Hello! I'm Gabbu! Would you like to learn about numbers and seasons?",
+                        position: 'top-centre',
+                        layer: 2,
+                    },
+
+                    {
+                        type: 'Button',
+                        layer: 3,
+                        action: 'GoToFrame',
+                        nextFrameId: '2',
+                        position: 'bottom-centre',
+                        color: 'blue',
+                        text: 'Click to Play!',
+                    },
+                ]
+            },
+            "2": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/autumnBarn.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'cornerCharacter',
+                        imageSrc: '/characters/Gabbu.png',
+                        position: 'top-left',
+                        layer: 1,
+                    },
+
+                    {
+                        type: 'Speak',
+                        text: "In autumn the leaves turn orange, red and brown! Here we have THREE LEAVES!",
+                        position: 'top-centre',
+                        layer: 2,
+                    },
+
+                    {
+                        type: 'Image',
+                        imageSrc: '/orangeLeaf.png',
+                        position: 'centre',
+                        layer: 3,
+                    },
+
+                    {
+                        type: 'Image',
+                        imageSrc: '/orangeLeaf.png',
+                        position: 'centre-left',
+                        layer: 3,
+                    },
+
+                    {
+                        type: 'Image',
+                        imageSrc: '/orangeLeaf.png',
+                        position: 'centre-right',
+                        layer: 3,
+                    },
+                    {
+                        type: 'Button',
+                        layer: 3,
+                        action: 'GoToFrame',
+                        nextFrameId: '3',
+                        position: 'bottom-centre',
+                        color: 'blue',
+                        text: 'Next...',
+                    },
+                ]
+            },
+            "3": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/autumnBarn.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'cornerCharacter',
+                        imageSrc: '/characters/Kaka.png',
+                        position: 'top-left',
+                        layer: 1,
+                    },
+
+                    {
+                        type: 'Speak',
+                        text: "Quiz time!",
+                        position: 'top-centre',
+                        layer: 2,
+                    },
+                    {
+                        type: 'Quiz',
+                        action: 'GoToFrame',
+                        correctAnswer: 3,
+                        nextFrameId: '4',
+                        text: 'How many leaves were on the screen?',
+                        position: 'centre',
+                        color: 'blue',
+                        layer: 3,
+                    }
+                ]
+            },
+            "4": {
+                objects: [
+                    {
+                        type: 'Background',
+                        imageSrc: '/autumnBarn.jpg',
+                        layer: 0,
+                    },
+
+                    {
+                        type: 'Character',
+                        imageSrc: '/characters/Didi.png',
+                        position: 'centre',
+                        layer: 1,
+                    },
+
+                    {
+                        type: 'Speak',
+                        text: "Well done for guessing THREE orange autumn leaves! Bye bye for now!",
+                        position: 'top-centre',
+                        layer: 2,
+                    },
+
+                ]
+            },
         }
     }
 }

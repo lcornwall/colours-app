@@ -9,33 +9,56 @@ interface ObjectComponentProps {
 const ObjectComponent: React.FC<ObjectComponentProps> = ({ object, onNavigate }) => {
     const Component = React.lazy(() => import(`./${object.type}`));
 
+    const isAutoNavigatable = object.type !== 'Quiz';
+
     useEffect(() => {
         let timer: NodeJS.Timeout | null = null;
 
-        if (object.action === 'GoToFrame' && object.nextFrameId && object.time > 0) {
-            console.log(`Setting up timeout for ${object.time} milliseconds to go to frame ${object.nextFrameId}.`);
+        if (
+            isAutoNavigatable &&
+            object.action === 'GoToFrame' &&
+            object.nextFrameId &&
+            object.time > 0
+        ) {
+            console.log(
+                `Setting up timeout for ${object.time} milliseconds to go to frame ${object.nextFrameId}.`
+            );
             timer = setTimeout(() => {
-                console.log(`Automatically navigating to frame ${object.nextFrameId} after ${object.time} milliseconds.`);
+                console.log(
+                    `Automatically navigating to frame ${object.nextFrameId} after ${object.time} milliseconds.`
+                );
                 onNavigate(object.nextFrameId);
             }, object.time);
         }
 
         return () => {
             if (timer) {
-                console.log(`Clearing timeout for navigation to frame ${object.nextFrameId}.`);
+                console.log(
+                    `Clearing timeout for navigation to frame ${object.nextFrameId}.`
+                );
                 clearTimeout(timer);
             }
         };
-    }, [object, onNavigate]);
+    }, [object, onNavigate, isAutoNavigatable]);
 
-    const handleClick = () => {
+    const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        const target = event.target as HTMLElement;
+
+        // Ignore clicks on form elements or if the click is inside a form
+        if (
+            target.tagName === 'INPUT' ||
+            target.tagName === 'TEXTAREA' ||
+            target.closest('form')
+        ) {
+            return;
+        }
+
         if (object.action === 'GoToFrame' && object.nextFrameId) {
             console.log(`Navigating to frame ${object.nextFrameId} on click.`);
             onNavigate(object.nextFrameId);
         }
     };
 
-    // Apply position class based on object.position property
     const positionClass = object.position ? object.position : '';
 
     return (
@@ -48,7 +71,7 @@ const ObjectComponent: React.FC<ObjectComponentProps> = ({ object, onNavigate })
                 }}
                 onClick={handleClick}
             >
-                <Component {...object} />
+                <Component {...object} onNavigate={onNavigate} />
             </div>
         </Suspense>
     );
