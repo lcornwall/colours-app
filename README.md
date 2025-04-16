@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Colours App
+This is the main application for the project. The important code is organised into the following directories:
+
+- `/app`: Contains the core application logic, including components, API endpoints, and the main application frame.
+- `/tests`: Contains the test files.
+- `/public`: Contains configuration files for the frames (inside /public/lib), images, and other static assets used by the application.
+- `/lib`: Contains the MongoDB database integration.
+
+## WARNING
+As good software engineering practice you should never commit your .env.local, and other files to GitHub - if the project is cloned from there (https://github.com/lcornwall/colours-app), as a result, the application backend will not work (lack of API keys) and tests may not pass. However, these files are included in this folder as it is not publicly available.
+
+The deployed version exists at: https://colours-app-prod.vercel.app/
 
 ## Getting Started
 
-First, run the development server:
+Follow the steps below to set up and run the application.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Prerequisites
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Make sure you have the following installed on your system:
+- [Node.js](https://nodejs.org/) (LTS version recommended)
+- [pnpm](https://pnpm.io/) (Package manager)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Install the dependencies using pnpm:
+- pnpm install
 
-## Learn More
+### Running the Development Server (either command, pnpm preferred)
+- pnpm dev 
+- bun dev
 
-To learn more about Next.js, take a look at the following resources:
+### Running the Tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Make sure your local development server is started before running the tests.
+Once the server is running, you can run tests in headless (no web tab opens) or headed mode (a tab opens and you watch the interaction).
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+For headed mode:
+- npx playwright test
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For headless mode:
+   - npx playwright test --headless
