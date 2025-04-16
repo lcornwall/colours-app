@@ -4,5 +4,6 @@ export default defineConfig({
     testDir: './tests',
     use: {
         headless: false,
+        baseURL: 'http://localhost:3000',
     },
 });
