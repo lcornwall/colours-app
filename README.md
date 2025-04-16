@@ -27,6 +27,8 @@ Make sure you have the following installed on your system:
 - pnpm install
 
 ### Running the Development Server (either command, pnpm preferred)
+Make sure you are in the `/app` directory before running the server.
+
 - pnpm dev 
 - bun dev
 
